@@ -61,12 +61,12 @@ the output data will be written to the same file, but with .new postfix:
 ```    
 
 - On the first run, the user will need to inspect the .new file for expected
-results. 
+results;
     
 - Otherwise, if differences are detected, the user can diff the 
-.txt and .new files to investigate and resolve any differences.
+.txt and .new files to investigate and resolve any differences;
 
-- In both cases once the user is satified with the results, the .new files can 
+- In both cases once the user is satisfied with the results, the .new files can 
 be renamed with .txt  extension and the .txt files can be checked into the git repo
 
 ### Comitting test result files to source control
