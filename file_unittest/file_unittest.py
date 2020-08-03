@@ -36,12 +36,14 @@ class TestCase(unittest.TestCase):
 
     Default output location:
         The default location to output the data will be:
-            {derived_class_path}.{derived_class_name}.{test_name}.txt
+            {derived_class_filepath}/test_results/
+                {derived_class_filename}.{derived_class_name}.{test_name}.txt
 
     Missing or different results:
         If the expected output file is missing, or differences are detected,
         the output data will be written to the same file, but with .new postfix:
-            {derived_class_path}.{derived_class_name}.{test_name}.new
+            {derived_class_filepath}/test_results/
+                {derived_class_filename}.{derived_class_name}.{test_name}.new
         
         - On the first run, the user will need to inspect the .new file for expected
         results. 

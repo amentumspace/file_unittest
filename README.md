@@ -47,7 +47,8 @@ make any assertion calls eg. `self.assertTrue`, `self.assertFalse` etc.
 The default location to output the data will be:
 
 ```
-    {derived_class_path}.{derived_class_name}.{test_name}.txt
+    {derived_class_filepath}/test_results/
+      {derived_class_filename}.{derived_class_name}.{test_name}.txt
 ```
 
 ### Missing or different results:
@@ -55,7 +56,8 @@ If the expected output file is missing, or differences are detected,
 the output data will be written to the same file, but with .new postfix:
 
 ```
-        {derived_class_path}.{derived_class_name}.{test_name}.new
+    {derived_class_filepath}/test_results/
+      {derived_class_filename}.{derived_class_name}.{test_name}.new
 ```    
 
 - On the first run, the user will need to inspect the .new file for expected
@@ -66,3 +68,8 @@ results.
 
 - In both cases once the user is satified with the results, the .new files can 
 be renamed with .txt  extension and the .txt files can be checked into the git repo
+
+### Comitting test result files to source control
+Once the output *.txt* files have been satisfactorily generated as in the
+previous step, they should be checked into source control so that they
+can be used as the benchmark for future runs.
