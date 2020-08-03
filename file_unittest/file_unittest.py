@@ -65,10 +65,14 @@ class TestCase(unittest.TestCase):
         raised here. 
         """
         def wrapper():
-            """
-            Creates a unique output filename and opens a handle to the file
-            for output by the self.output() function below.
-            """            
+            ###
+            # Dont use docstrings here. They will obfuscate any warning messages
+            # from unittest because we are "really" calling func()
+            # 
+            # Creates a unique output filename and opens a handle to the file
+            # for output by the self.output() function below.
+            ###
+            #             
             # construct the output file name in 
             # the format {module}.{class}.{method}
             func_name = func.__name__
@@ -151,6 +155,7 @@ class TestCase(unittest.TestCase):
         # hijack the test functions
         test_funcs = [f for f in dir(self) 
                         if f.startswith('test_') and callable(getattr(self,f))]
+
         for f in test_funcs:
             # get a pointer to the test function
             fn = getattr(self, f)
