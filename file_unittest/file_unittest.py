@@ -56,7 +56,19 @@ class TestCase(unittest.TestCase):
     """ 
 
     def hijack(self, func):
-        def wrapper():            
+        """
+        This method wraps our test_ functions 
+        (called by the unittest package) through this wrapper code
+        which handles file output and comparison.
+
+        And test errors (differences in txt output files) will be
+        raised here. 
+        """
+        def wrapper():
+            """
+            Creates a unique output filename and opens a handle to the file
+            for output by the self.output() function below.
+            """            
             # construct the output file name in 
             # the format {module}.{class}.{method}
             func_name = func.__name__
@@ -106,11 +118,21 @@ class TestCase(unittest.TestCase):
         return wrapper
     
     def output(self, msg):
+        """
+        Write the message to the output file and write to screen if requested
+        """
         self.outfile.write(msg+'\n')
         if self.print_to_screen:
             print(msg)
-
+            
     def __init__(self, methodName='runTest', print_to_screen=False):
+        """
+            Determine the derived class file path name
+            and the name of the derived class. These are used to generate
+            the output file path.
+
+            It also reroutes all test_ functions through our wrapper code above.
+        """
         # whether we output test results to screen
         self.print_to_screen = print_to_screen
 
@@ -131,8 +153,7 @@ class TestCase(unittest.TestCase):
         for f in test_funcs:
             # get a pointer to the test function
             fn = getattr(self, f)
-            # rewire the function call to execute the
-            # wrapped function instead
+            # rewire the function call to execute the wrapped function instead
             setattr(self, f, self.hijack(fn))
         
         # initialise base class
