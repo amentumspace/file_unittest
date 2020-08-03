@@ -61,7 +61,7 @@ class TestCase(unittest.TestCase):
         (called by the unittest package) through this wrapper code
         which handles file output and comparison.
 
-        And test errors (differences in txt output files) will be
+        Any test errors (differences in txt output files) will be
         raised here. 
         """
         def wrapper():
@@ -95,11 +95,11 @@ class TestCase(unittest.TestCase):
             # open the file to be populated by self.output() called by our test function
             self.outfile = open(new_filepath, "w")
             # call the test function            
-            result = func()
+            func()
             # close the output file
             self.outfile.close()
             
-            # ensure the new file  was generated
+            # ensure the new file was generated
             self.assertTrue(os.path.exists(new_filepath), 
                             f"Could not generate new file '{new_filepath}'")
             
@@ -127,11 +127,11 @@ class TestCase(unittest.TestCase):
             
     def __init__(self, methodName='runTest', print_to_screen=False):
         """
-            Determine the derived class file path name
-            and the name of the derived class. These are used to generate
-            the output file path.
+        Determine the derived class file path name
+        and the name of the derived class. These are used to generate
+        the output file path.
 
-            It also reroutes all test_ functions through our wrapper code above.
+        It also reroutes all test_ functions through our wrapper code above.
         """
         # whether we output test results to screen
         self.print_to_screen = print_to_screen
@@ -149,7 +149,8 @@ class TestCase(unittest.TestCase):
         self.class_name = type(self).__name__
 
         # hijack the test functions
-        test_funcs = [f for f in dir(self) if f.startswith('test_')]
+        test_funcs = [f for f in dir(self) 
+                        if f.startswith('test_') and callable(getattr(self,f))]
         for f in test_funcs:
             # get a pointer to the test function
             fn = getattr(self, f)
