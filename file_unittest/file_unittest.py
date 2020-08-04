@@ -129,7 +129,7 @@ class TestCase(unittest.TestCase):
         if self.print_to_screen:
             print(msg)
             
-    def __init__(self, methodName='runTest', print_to_screen=False):
+    def __init__(self, methodName='runTest', print_to_screen=True):
         """
         Determine the derived class file path name
         and the name of the derived class. These are used to generate

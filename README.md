@@ -1,5 +1,23 @@
 # file_unittest
 
+## Introduction
+
+This package provides a way to create and run unit tests based on text-based files.
+
+Its purpose is to allow the user to generate a set of text files which
+are then re-generated and compared whenever the tested code-base changes. 
+
+## Installation
+
+The preferred installation method is to use `pip install`.
+
+The package can be installed into any active conda environment by running:
+
+```
+cd file_unittest/   # cd into this directory
+pip install .
+```
+
 ## file_unittest.TestCase
 
 This class extends the *unittest.TestCase* class to allow the user to
