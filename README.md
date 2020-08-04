@@ -88,7 +88,7 @@ results;
 - In both cases once the user is satisfied with the results, the .new files can 
 be renamed with .txt  extension and the .txt files can be checked into the git repo
 
-## Comitting test result files to source control
+## Committing test result files to source control
 
 Once the output *.txt* files have been satisfactorily generated as in the
 previous step, they should be checked into source control so that they
