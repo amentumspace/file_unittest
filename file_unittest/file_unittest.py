@@ -125,7 +125,7 @@ class TestCase(unittest.TestCase):
         """
         Write the message to the output file and write to screen if requested
         """
-        self.outfile.write(msg+'\n')
+        self.outfile.write(str(msg)+'\n')
         if self.print_to_screen:
             print(msg)
             
