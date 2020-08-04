@@ -146,6 +146,9 @@ class TestCase(unittest.TestCase):
         self.out_filepath = child_filepath + "/test_results"
 
         # save the python module containing our child class
+        # remove any subfolders from the path
+        child_filename = os.path.basename(child_filename)
+        # strip any extensions
         parts = os.path.splitext(child_filename)
         self.module_name = parts[len(parts) - 2]
 
