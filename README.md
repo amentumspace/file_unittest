@@ -31,7 +31,7 @@ Once the user is satisfied that the output data is
 correct, these unit test simply ensure that the data does not change with
 changes in the code base.
 
-### Usage:
+## Usage:
 
 Rather than inherit from *unittest.TestCase* the user should
 derive a class from *file_unittest.TestCase*.
@@ -70,6 +70,7 @@ The default location to output the data will be:
 ```
 
 ### Missing or different results:
+
 If the expected output file is missing, or differences are detected,
 the output data will be written to the same file, but with .new postfix:
 
@@ -87,7 +88,31 @@ results;
 - In both cases once the user is satisfied with the results, the .new files can 
 be renamed with .txt  extension and the .txt files can be checked into the git repo
 
-### Comitting test result files to source control
+## Comitting test result files to source control
+
 Once the output *.txt* files have been satisfactorily generated as in the
 previous step, they should be checked into source control so that they
 can be used as the benchmark for future runs.
+
+## A note on output precision
+
+This unit test framework does a simple file comparison after the text files
+have been generated. 
+
+It will raise an exception if the two files are not identical.
+
+Sometimes code changes will result in small changes in output,
+for instance due to the finite-precision of CPUs, and some small changes
+in output might be deemed to be acceptable. 
+
+In this case it is recommended
+to control the precision of the output when generating the files.
+
+For instance, an example test case might be written as follows:
+
+```python
+for i in range(len(midpoint_dates)):
+    self.output(f'{midpoint_dates[i]:.6f}, {optWs[i]:.6e}, {residuals[i]:.6e}')
+```
+
+Here we control the output format (float vs scientific) and precision.
