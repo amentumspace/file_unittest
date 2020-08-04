@@ -102,8 +102,8 @@ have been generated.
 It will raise an exception if the two files are not identical.
 
 Sometimes code changes will result in small changes in output,
-for instance due changing the order of operations, and some small changes
-in output might be deemed to be acceptable. 
+for instance due to changing the order of operations, and some small changes
+in output might be acceptable. 
 
 In this case it is recommended to control the precision of the output when generating the files.
 
