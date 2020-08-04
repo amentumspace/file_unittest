@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="file_unittest",
-    version="0.0.5",
+    version="0.0.6",
     author="Amentum",
     author_email="team@amentum.space",
     description="A file-based unit test framework",

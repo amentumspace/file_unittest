@@ -127,7 +127,7 @@ class TestCase(unittest.TestCase):
                 os.remove(new_filepath)
         return wrapper
     
-    def output(self, msg):
+    def output(self, msg=''):
         """
         Write the message to the output file and write to screen if requested
         """
