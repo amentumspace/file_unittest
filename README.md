@@ -115,3 +115,15 @@ for i in range(len(midpoint_dates)):
 ```
 
 Here we control the output format (float vs scientific) and precision.
+
+## Controlling output to screen
+
+By default, test results will also be output to screen.
+
+This can be controlled in the setUp() method of the class
+
+```python
+class MyTest(file_unittest.TestCase):
+    def setUp(self):
+        self.print_to_screen = False
+```

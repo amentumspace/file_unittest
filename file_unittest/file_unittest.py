@@ -71,8 +71,14 @@ class TestCase(unittest.TestCase):
             # 
             # Creates a unique output filename and opens a handle to the file
             # for output by the self.output() function below.
+            # It then calls the actual unit test function to populate the 
+            # output file and does the comparison
             ###
-            #             
+
+            # if we print to screen, add a new line when the new test starts
+            if self.print_to_screen:
+                print()
+
             # construct the output file name in 
             # the format {module}.{class}.{method}
             func_name = func.__name__
