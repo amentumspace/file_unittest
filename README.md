@@ -24,14 +24,11 @@ This class extends the *unittest.TestCase* class to allow the user to
 run unit tests by writing data to a file and verifying the output
 has not changed since the last time the unit test was run.
 
-This method is useful if the only benchmark numbers are coming from our
-models themselves. 
-
 Once the user is satisfied that the output data is
 correct, these unit test simply ensure that the data does not change with
 changes in the code base.
 
-## Usage:
+## Usage
 
 Rather than inherit from *unittest.TestCase* the user should
 derive a class from *file_unittest.TestCase*.
@@ -60,7 +57,7 @@ make any assertion calls eg. `self.assertTrue`, `self.assertFalse` etc.
 
 - This class will take care of warning about any differences in output.
 
-### Default output location:
+### Default output location
 
 The default location to output the data will be:
 
@@ -69,7 +66,7 @@ The default location to output the data will be:
       {derived_class_filename}.{derived_class_name}.{test_name}.txt
 ```
 
-### Missing or different results:
+### Missing or different results
 
 If the expected output file is missing, or differences are detected,
 the output data will be written to the same file, but with .new postfix:
