@@ -125,4 +125,4 @@ class MyTest(file_unittest.TestCase):
         self.print_to_screen = False
 ```
 
-Sponsored by: [https://amentum.io](https://amentum.io))
+Sponsored by: [https://amentum.io](https://amentum.io)
