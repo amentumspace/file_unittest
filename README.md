@@ -2,9 +2,9 @@
 
 ## Introduction
 
-This package provides a way to create and run unit tests based on text-based files.
+This package provides a way to create and run unit tests based on text-based files aka _golden testing_.
 
-Its purpose is to allow the user to generate a set of text files which
+Its purpose is to allow the user to generate a set of text files (_golden files_) which
 are then re-generated and compared whenever the tested code-base changes. 
 
 ## Installation
