@@ -1,44 +1,21 @@
 # file_unittest
 
 ## Introduction
-
-This package provides a way to create and run unit tests based on text-based files aka _golden testing_.
-
-Its purpose is to allow the user to generate a set of text files (_golden files_) which
-are then re-generated and compared whenever the tested code-base changes. 
+This package enables the creation and execution of unit tests based on text-based files, also known as _golden testing_. Its primary function is to facilitate the generation of text files (_golden files_) that are regenerated and compared against whenever there are changes in the codebase.
 
 ## Installation
+Install this package using `pip` by executing the following commands in any active conda environment:
 
-The preferred installation method is to use `pip install`.
-
-The package can be installed into any active conda environment by running:
-
-```
-cd file_unittest/   # cd into this directory
+```bash
+cd file_unittest/
 pip install .
 ```
 
 ## file_unittest.TestCase
-
-This class extends the *unittest.TestCase* class to allow the user to
-run unit tests by writing data to a file and verifying the output
-has not changed since the last time the unit test was run.
-
-Once the user is satisfied that the output data is
-correct, these unit test simply ensure that the data does not change with
-changes in the code base.
+Derived from `unittest.TestCase`, this class allows file-based unit testing. Users confirm the correctness of output data by writing to files and verifying that subsequent outputs remain unchanged despite codebase modifications.
 
 ## Usage
-
-Rather than inherit from *unittest.TestCase* the user should
-derive a class from *file_unittest.TestCase*.
-
-Like the normal unit test, individual test functions 
-are appended with *test_*.
-
-Any desired output data is written by calling `self.output`
-
-Example python test file:
+Instead of inheriting from `unittest.TestCase`, extend `file_unittest.TestCase` and define test functions prefixed with `test_`. For example:
 
 ```python
 import unittest
@@ -52,72 +29,32 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-- Unlike the normal *unittest.TestCase* the user does not need to
-make any assertion calls eg. `self.assertTrue`, `self.assertFalse` etc.
+This approach eliminates the need for explicit assertions like `self.assertTrue` or `self.assertFalse`. The class handles discrepancies in output internally.
 
-- This class will take care of warning about any differences in output.
-
-### Default output location
-
-The default location to output the data will be:
+### Default Output Location
+Output files are stored in the following directory structure:
 
 ```
-    {derived_class_filepath}/test_results/
-      {derived_class_filename}.{derived_class_name}.{test_name}.txt
+{derived_class_filepath}/test_results/
+  {derived_class_filename}.{derived_class_name}.{test_name}.txt
 ```
 
-### Missing or different results
+### Handling Differences
+If the expected output file is missing or differences are detected, the output is saved with a `.new` postfix. The user must verify these `.new` files and, if correct, rename them to `.txt` to serve as new benchmarks.
 
-If the expected output file is missing, or differences are detected,
-the output data will be written to the same file, but with .new postfix:
+## Committing Test Results
+Once the output `.txt` files meet expectations, commit them to your version control system to establish baselines for future tests.
 
-```
-    {derived_class_filepath}/test_results/
-      {derived_class_filename}.{derived_class_name}.{test_name}.new
-```    
-
-- On the first run, the user will need to inspect the .new file for expected
-results;
-    
-- Otherwise, if differences are detected, the user can diff the 
-.txt and .new files to investigate and resolve any differences;
-
-- In both cases once the user is satisfied with the results, the .new files can 
-be renamed with .txt  extension and the .txt files can be checked into the git repo
-
-## Committing test result files to source control
-
-Once the output *.txt* files have been satisfactorily generated as in the
-previous step, they should be checked into source control so that they
-can be used as the benchmark for future runs.
-
-## A note on output precision
-
-This unit test framework does a simple file comparison after the text files
-have been generated. 
-
-It will raise an exception if the two files are not identical.
-
-Sometimes code changes will result in small changes in output,
-for instance due to changing the order of operations, and some small changes
-in output might be acceptable. 
-
-In this case it is recommended to control the precision of the output when generating the files.
-
-For instance, an example test case might be written as follows:
+## Precision Control
+Due to potential minor discrepancies caused by code changes (like operation order modifications), it's advisable to control output precision when generating files:
 
 ```python
 for i in range(len(midpoint_dates)):
     self.output(f'{midpoint_dates[i]:.6f}, {optWs[i]:.6e}, {residuals[i]:.6e}')
 ```
 
-Here we control the output format (float vs scientific) and precision.
-
-## Controlling output to screen
-
-By default, test results will also be output to screen.
-
-This can be controlled in the setUp() method of the class
+## Output Display Control
+To prevent test results from displaying on the screen, adjust the `setUp()` method:
 
 ```python
 class MyTest(file_unittest.TestCase):
@@ -125,4 +62,4 @@ class MyTest(file_unittest.TestCase):
         self.print_to_screen = False
 ```
 
-Sponsored by: [https://amentum.io](https://amentum.io)
+Revised by [Software Documentation Helper GPT](https://chatgpt.com/g/g-IXDkDVHuP-software-documentation-helper).
