@@ -62,4 +62,3 @@ class MyTest(file_unittest.TestCase):
         self.print_to_screen = False
 ```
 
-Revised by [Software Documentation Helper GPT](https://chatgpt.com/g/g-IXDkDVHuP-software-documentation-helper).
